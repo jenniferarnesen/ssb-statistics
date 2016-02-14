@@ -14,35 +14,72 @@ require.config({
 require(['jQuery', 'ssb-service', 'jquery-tablesorter'], function ($, ssbService) {
     $(document).ready(function () {
 
-        $('#statistics').tablesort();
-
         ssbService.get()
             .then(function (ds) {
                 var OSLO = ds.Dimension('Region').id[51],
                     WOMEN = ds.Dimension('Kjonn').id[2],
                     years = ds.Dimension('Tid').id,
-                    result = [],
+                    levels = ds.Dimension('Nivaa').id,
+                    yearRows,
+                    yearRowsMarkup,
+                    th,
                     i;
-                
-                //free dimension is Levels (Nivaa)
-                for (i = 0; i < years.length; i += 1) {
-                    var res =
-                        ds.Data({
-                            'Region': OSLO,
-                            'Kjonn': WOMEN,
-                            'Tid': years[i]
-                        })
-                        .map(function (curr) {
-                            return curr.value;
-                        });
 
-                    result.push([
-                        ds.Dimension('Tid').Category(i).label, res[0], res[1], res[2], res[3]
-                    ]);
+                var getRadioButtonMarkup = function () {
+                    var markup;
+                    for (i = 0; i < ds.Dimension('Kjonn').id.length; i += 1) {
+                        var checkedVal = i == 0 ? 'checked' : '';
+                        markup += '<input type="radio" name="sex" \
+                            value="' + ds.Dimension("Kjonn").id[i] + '"' + checkedVal + '> \
+                            ' + ds.Dimension("Kjonn").Category(i).label;
+                    }
+                    return markup;
                 };
 
-                for (i = 0; i < result.length; i += 1) {
-                    var tds = result[i]
+                var setTableHeaders = function () {
+                    th = ['<th>' + ds.Dimension('Tid').label + '</th>'].concat(levels
+                        .map(function (curr) {
+                            return '<th class="number"> \
+                                ' +ds.Dimension('Nivaa').Category(curr).label + ' \
+                                </th>';
+                        }))
+                        .join('');
+
+                    $('#statistics thead').append('<tr>' + th + '</tr>');
+                };
+
+                var addTableData = function (sex) {
+
+                }
+
+
+                $('#content').append(getRadioButtonMarkup());
+
+                $('input:radio[name="sex"]').change(function () {
+                    console.log($(this).val());
+                });
+
+                setTableHeaders();
+                //addTableData(2);
+
+                yearRows = years.map(function (year, i) {
+                    var res =
+                            ds.Data({
+                                'Region': OSLO,
+                                'Kjonn': WOMEN,
+                                'Tid': year
+                            })
+                            .map(function (curr) {
+                                return curr.value;
+                            }),
+
+                        yearLabel = ds.Dimension('Tid').Category(i).label;
+
+                    return [yearLabel].concat(res);
+                });
+
+                yearRowsMarkup = yearRows.reduce(function (previous, current) {
+                    var tds = current
                         .map(function (curr) {
                             return '<td>' + curr + '</td>';
                         })
@@ -50,11 +87,17 @@ require(['jQuery', 'ssb-service', 'jquery-tablesorter'], function ($, ssbService
                             return prev + curr;
                         });
 
-                    $('#statistics tbody').append('<tr>' + tds + '</tr>'); 
-                }
+                    return previous + '<tr>' + tds + '</tr>';
+                });
+
+                $('#statistics tbody').append(yearRowsMarkup);
+                $('#statistics').tablesort();
+                $('.number').data('sortBy', function (th, td, sorter) {
+                    return parseInt(td.text(), 10);
+                });
             })
             .catch(function (e) {
-                console.log('could not fetch data at this time', e);
+                console.log('Could not fetch data at this time', e);
             });
     });
 });
