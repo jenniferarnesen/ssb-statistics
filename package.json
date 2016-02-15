@@ -4,7 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server",
+    "postinstall": "jspm install"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,23 @@
     "jQuery": "^1.7.4",
     "jsonstat": "^0.9.9",
     "requirejs": "^2.1.22"
+  },
+  "devDependencies": {
+    "html-dist": "^0.2.2",
+    "jspm": "^0.16.27",
+    "lite-server": "^2.0.1",
+    "uglifyjs": "^2.4.10"
+  },
+  "jspm": {
+    "dependencies": {
+      "fetch": "npm:whatwg-fetch@^0.11.0",
+      "react": "npm:react@^0.14.7",
+      "whatwg-fetch": "npm:whatwg-fetch@^0.11.0"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   }
 }

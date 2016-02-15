@@ -3,21 +3,18 @@
 <head>
 	<title>Utdanningsniv&aring; i prosent</title>
 
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="app/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="app/css/main.css">
 
-	<script type="text/javascript" src="js/json-stat.js"></script>
-	<script data-main="js/main" src="node_modules/requirejs/require.js"></script>
+	<script src="jspm_packages/system.js"></script>
+	<script src="config.js"></script>
+	<script>
+		System.import("app/main")
+	</script>
 </head>
 <body>
 	<h1>Utdanningsniv&aring; i prosent</h1>
 	<div id="content">
-		<table id="statistics">
-			<thead>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
 	</div>
 </body>
 </html>

@@ -1,0 +1,142 @@
+body {
+	font: normal 14px/21px Arial, serif;
+}
+
+#statistics {
+	float: left;
+	width: 40%;
+	margin: 5%;
+}
+
+table {
+	font-size: 1em;
+	border-collapse: collapse;
+	margin: 0 auto
+}
+
+table, th, td {
+	border: 1px solid #999;
+	padding: 8px 16px;
+	text-align: left;
+}
+
+th {
+	background: #f4f4f4;
+	cursor: pointer;
+  text-transform: capitalize;
+}
+
+th:hover,
+th.sorted {
+	background: #d4d4d4;
+}
+
+th.no-sort,
+th.no-sort:hover {
+	background: #f4f4f4;
+	cursor: not-allowed;
+}
+
+th.sorted.ascending:after {
+	content: "  \2191";
+}
+
+th.sorted.descending:after {
+	content: " \2193";
+}
+
+
+/* Wait "spinner" */
+/* taken from https://github.com/oskargustafsson/CSS-spinners */
+/* NEWTON'S BALLS */
+
+@-webkit-keyframes newtonBallFirst {
+  0% { -webkit-transform: rotate(70deg); }
+  50% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+@-webkit-keyframes newtonBallMiddle {
+  0% { -webkit-transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(0deg); }
+  51% { -webkit-transform: rotate(-0.5deg); }
+  52% { -webkit-transform: rotate(0.5deg); }
+  53% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+@-webkit-keyframes newtonBallLast {
+  0% { -webkit-transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(-70deg); }
+}
+@keyframes newtonBallFirst {
+  0% { transform: rotate(70deg); }
+  50% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes newtonBallMiddle {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(0deg); }
+  51% { transform: rotate(-0.5deg); }
+  52% { transform: rotate(0.5deg); }
+  53% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes newtonBallLast {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(0deg); }
+  100% { transform: rotate(-70deg); }
+}
+
+.spinner.newton .ball {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 6em;
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+
+.spinner.newton .ball::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  background: radial-gradient(circle at 40% 40%, rgb(79, 77, 77) 39%, rgb(55, 55, 55) 42%);
+}
+
+.spinner.newton .ball::before {
+  content: '';
+  position: absolute;
+  width: 0.08em;
+  margin-left: -0.04em;
+  top: 0;
+  left: 50%;
+  bottom: 1em;
+  background: linear-gradient(transparent, gray);
+}
+
+.spinner.newton .ball {
+  -webkit-animation: newtonBallMiddle 1s infinite alternate;
+  animation: newtonBallMiddle 1s infinite alternate;
+}
+
+.spinner.newton .ball:first-child {
+  -webkit-animation: newtonBallFirst 1s ease-in infinite alternate;
+  animation: newtonBallFirst 1s ease-in infinite alternate;
+}
+.spinner.newton .ball:first-child::after {
+  -webkit-animation: newtonBallLast 1s ease-out infinite alternate-reverse;
+  animation: newtonBallLast 1s ease-out infinite alternate-reverse;
+}
+
+.spinner.newton .ball:last-child {
+  -webkit-animation: newtonBallLast 1s ease-out infinite alternate;
+  animation: newtonBallLast 1s ease-out infinite alternate;
+}
+.spinner.newton .ball:last-child::after {
+  -webkit-animation: newtonBallFirst 1s ease-in infinite alternate-reverse;
+  animation: newtonBallFirst 1s ease-in infinite alternate-reverse;
+}
