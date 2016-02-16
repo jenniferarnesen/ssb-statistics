@@ -5,7 +5,7 @@ a segment of the Norwegian population
 
 To set up:
 
-(prerequisites: node, npm)
+(global prerequisites: node, npm, jspm)
 
 ```
 npm install

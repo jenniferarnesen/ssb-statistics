@@ -6,6 +6,11 @@ import 'tablesort';
 import TableRow from './table-row';
 
 export default class StatisticsTable extends React.Component {
+    /**
+     * React class lifecycle method
+     * Attach the jquery plugin behaviour to the statistics table
+     * @return {[type]} [description]
+     */
     componentDidUpdate () {
         $('#statistics').tablesort();
         $('.number').data('sortBy', function (th, td, sorter) {
@@ -13,6 +18,9 @@ export default class StatisticsTable extends React.Component {
         });
     }
 
+    /**
+     * Assemble the table header
+     */
     getHeaders () {
         if (!this.props.yearLabel) {
             return <tr></tr>;
@@ -32,6 +40,11 @@ export default class StatisticsTable extends React.Component {
         );
     }
 
+    /**
+     * Get the table rows
+     *
+     * @return {Array}
+     */
     getRows () {
         if (!this.props.data) {
             return <tr></tr>;
@@ -42,6 +55,9 @@ export default class StatisticsTable extends React.Component {
         });
     }
 
+    /**
+     * Render the component
+     */
     render () {
         let headers = this.getHeaders(),
             rows = this.getRows();

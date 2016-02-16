@@ -16,12 +16,26 @@ class StatisticsViewer extends React.Component {
 		};
 	}
 
+	/**
+	 * Extract the labels for a given dimension
+	 * from the statistics dataset
+	 *
+	 * @param  {Object} dimension
+	 * @return {Array}
+	 */
 	getLabels (dimension) {
 		return dimension.id.map(function (curr, i) {
 			return dimension.Category(i).label;
 		});
 	}
 
+	/**
+	 * Query for the education level data for a given sex
+	 *
+	 * @param  {Object} ds  Dataset object
+	 * @param  {Integer} sex
+	 * @return {Array}
+	 */
 	getData (ds, sex) {
 		let years = ds.Dimension('Tid').id,
             OSLO = ds.Dimension('Region').id[51];
@@ -44,11 +58,22 @@ class StatisticsViewer extends React.Component {
         });
 	}
 
+	/**
+	 * Handler for radio buttons to filter data based on
+	 * sex choice
+	 *
+	 * @param  {Integer} item Which item was clicked
+	 * @return {Array}
+	 */
 	handleFilterChanged (item) {
 		let data = this.getData(this.ds, item);
         this.setState({data: data});
     }
 
+    /**
+     * React class lifecycle method
+     * Fetch the data from ssb and set the initial state
+     */
 	componentDidMount () {
 		let self = this;
 		SsbService.get().then((res) => {
@@ -66,6 +91,9 @@ class StatisticsViewer extends React.Component {
 		});
 	}
 
+	/**
+	 * Render the component
+	 */
 	render () {
 		return (
 			<div>

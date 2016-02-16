@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default class TableRow extends React.Component {
+	/**
+	 * Get the table cells for a row
+	 * @return {Array}
+	 */
 	getTds () {
 		if (!this.props.data) {
 			return <td></td>;
@@ -11,6 +15,9 @@ export default class TableRow extends React.Component {
 		});
 	}
 
+	/**
+	 * Render the component
+	 */
 	render () {
 		var tds = this.getTds();
 
