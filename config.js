@@ -20,6 +20,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",
     "fetch": "npm:whatwg-fetch@0.11.0",
+    "jquery": "npm:jquery@2.2.0",
     "react": "npm:react@0.14.7",
     "react-dom": "npm:react-dom@0.14.7",
     "whatwg-fetch": "npm:whatwg-fetch@0.11.0",

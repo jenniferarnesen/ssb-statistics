@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default class RadioButton extends React.Component {
-	handleClick (e) {
-        console.log('button clicked', e);
+	handleClick () {
+        this.props.handleFilterChanged(this.props.id);
     }
 
 	render () {
@@ -11,7 +11,7 @@ export default class RadioButton extends React.Component {
 				<input type="radio"
 					name="{this.props.name}"
 					value="{this.props.id}"
-					onClick={this.handleClick}/>
+					onClick={this.handleClick.bind(this)}/>
 				<span>{this.props.title}</span>
 			</span>
 		);
