@@ -23,6 +23,7 @@ System.config({
     "jquery": "npm:jquery@2.2.0",
     "react": "npm:react@0.14.7",
     "react-dom": "npm:react-dom@0.14.7",
+    "tablesort": "github:kylefox/jquery-tablesort@0.0.6",
     "whatwg-fetch": "npm:whatwg-fetch@0.11.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"

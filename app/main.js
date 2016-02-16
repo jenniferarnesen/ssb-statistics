@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import StatisticsTable from './components/statistics-table';
-
-import * as SsbService from './js/ssb-service';
-import SexSelector from './components/sex-selector';
-
+import * as SsbService from './lib/ssb-service';
 import JSONstat from 'node_modules/jsonstat/module';
+
+import StatisticsTable from './components/statistics-table';
+import SexSelector from './components/sex-selector';
 
 class StatisticsViewer extends React.Component {
 	constructor (props) {
@@ -46,8 +45,7 @@ class StatisticsViewer extends React.Component {
 	}
 
 	handleFilterChanged (item) {
-		console.log('item', item);
-        let data = this.getData(this.ds, item);
+		let data = this.getData(this.ds, item);
         this.setState({data: data});
     }
 
@@ -56,7 +54,7 @@ class StatisticsViewer extends React.Component {
 		SsbService.get().then((res) => {
 			self.ds = JSONstat(res).Dataset(0);
 
-			let defaultSex = self.ds.Dimension("Kjonn").id[0],
+			let defaultSex = self.ds.Dimension('Kjonn').id[0],
 				data = this.getData(self.ds, defaultSex);
 
 			this.setState({

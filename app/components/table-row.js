@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default class TableRow extends React.Component {
-
 	getTds () {
 		if (!this.props.data) {
 			return <td></td>;

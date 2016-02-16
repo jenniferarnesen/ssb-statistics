@@ -1,12 +1,11 @@
 import React from 'react';
 
 import $ from 'jquery';
-import tablesorter from '../js/jquery.tablesort.min';
+import 'tablesort';
 
 import TableRow from './table-row';
 
 export default class StatisticsTable extends React.Component {
-
     componentDidUpdate () {
         $('#statistics').tablesort();
         $('.number').data('sortBy', function (th, td, sorter) {
